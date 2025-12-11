@@ -1,0 +1,50 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Accidentologie Schema">
+    <mxGraphModel dx="1422" dy="794" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <!-- Table accidents (centrale) -->
+        <mxCell id="accidents" value="&#10;&lt;b&gt;accidents&lt;/b&gt;&#10;id &lt;b&gt;SERIAL PK&lt;/b&gt;&#10;source VARCHAR(20)&#10;source_id VARCHAR(100) UNIQUE&#10;accident_date TIMESTAMP&#10;severity_scale INTEGER&#10;raw_data JSONB&#10;created_at TIMESTAMP&#10;updated_at TIMESTAMP" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="300" y="100" width="200" height="140" as="geometry"/>
+        </mxCell>
+        <!-- Table sites -->
+        <mxCell id="sites" value="&#10;&lt;b&gt;sites&lt;/b&gt;&#10;id &lt;b&gt;SERIAL PK&lt;/b&gt;&#10;accident_id &lt;b&gt;FK&lt;/b&gt;&#10;plant_name VARCHAR(255)&#10;address TEXT&#10;latitude DECIMAL&#10;longitude DECIMAL&#10;country VARCHAR(50)&#10;industrial_activity VARCHAR(100)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="50" y="300" width="200" height="140" as="geometry"/>
+        </mxCell>
+        <!-- Table substances -->
+        <mxCell id="substances" value="&#10;&lt;b&gt;substances&lt;/b&gt;&#10;id &lt;b&gt;SERIAL PK&lt;/b&gt;&#10;accident_id &lt;b&gt;FK&lt;/b&gt;&#10;name VARCHAR(100)&#10;cas_number VARCHAR(20)&#10;quantity DECIMAL(15,2)&#10;storage_type VARCHAR(50)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="300" y="300" width="200" height="120" as="geometry"/>
+        </mxCell>
+        <!-- Table consequences_human -->
+        <mxCell id="human" value="&#10;&lt;b&gt;consequences_human&lt;/b&gt;&#10;id &lt;b&gt;SERIAL PK&lt;/b&gt;&#10;accident_id &lt;b&gt;FK&lt;/b&gt;&#10;fatalities INTEGER&#10;injuries INTEGER&#10;evacuated INTEGER&#10;hospitalized INTEGER&#10;affected_workers BOOLEAN" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="550" y="300" width="200" height="120" as="geometry"/>
+        </mxCell>
+        <!-- Table consequences_other -->
+        <mxCell id="other" value="&#10;&lt;b&gt;consequences_other&lt;/b&gt;&#10;id &lt;b&gt;SERIAL PK&lt;/b&gt;&#10;accident_id &lt;b&gt;FK&lt;/b&gt;&#10;environmental_impact JSONB&#10;economic_cost DECIMAL&#10;disruption_duration INTERVAL" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="300" y="500" width="200" height="100" as="geometry"/>
+        </mxCell>
+        <!-- Table causes -->
+        <mxCell id="causes" value="&#10;&lt;b&gt;causes&lt;/b&gt;&#10;id &lt;b&gt;SERIAL PK&lt;/b&gt;&#10;accident_id &lt;b&gt;FK&lt;/b&gt;&#10;event_category VARCHAR(50)&#10;equipment_failure VARCHAR(100)&#10;description TEXT" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="550" y="500" width="200" height="100" as="geometry"/>
+        </mxCell>
+        <!-- Relations FK vers accidents -->
+        <mxCell id="link-sites" style="endArrow=ERoneToMany;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="sites" target="accidents">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="link-substances" style="endArrow=ERoneToMany;html=1;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="substances" target="accidents">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="link-human" style="endArrow=ERoneToMany;html=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="human" target="accidents">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="link-other" style="endArrow=ERoneToMany;html=1;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="other" target="accidents">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="link-causes" style="endArrow=ERoneToMany;html=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="causes" target="accidents">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
