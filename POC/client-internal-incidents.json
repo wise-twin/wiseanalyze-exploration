@@ -1,0 +1,133 @@
+[
+  {
+    "incident_id": "INC-2024-0042",
+    "site": "Raffinerie Normandie - Unité 12",
+    "date": "2024-01-18",
+    "reported_by": "Jean-Marc Duval",
+    "department": "Maintenance",
+    "severity": "high",
+    "category": "Fuite gaz",
+    "title": "Fuite de butane sur ligne de transfert",
+    "description": "Lors de la ronde matinale, l'opérateur a détecté une odeur de gaz au niveau de la ligne de transfert LT-124. Après investigation, une fuite a été identifiée sur un coude de canalisation présentant des signes avancés de corrosion. Le secteur a été immédiatement balisé et la ligne isolée. Pas de blessé.",
+    "immediate_actions": [
+      "Isolement de la ligne",
+      "Périmètre de sécurité 150m",
+      "Arrêt des travaux à chaud dans la zone"
+    ],
+    "root_cause_preliminary": "Corrosion sous calorifuge non détectée lors de la dernière inspection (2022)",
+    "injuries": 0,
+    "material_damage_eur": 45000,
+    "production_loss_hours": 72,
+    "status": "Investigation en cours",
+    "similar_past_incidents": ["INC-2021-0087"],
+    "attachments": ["photo_fuite_001.jpg", "rapport_inspection_2022.pdf"]
+  },
+  {
+    "incident_id": "INC-2024-0038",
+    "site": "Dépôt Méditerranée - Bac T-205",
+    "date": "2024-01-10",
+    "reported_by": "Sophie Martin",
+    "department": "Exploitation",
+    "severity": "medium",
+    "category": "Débordement",
+    "title": "Débordement partiel bac fioul lors transfert",
+    "description": "Durant une opération de transfert de fioul lourd depuis navire, le bac T-205 a débordé d'environ 800 litres. Le produit a été contenu dans la cuvette de rétention. L'opérateur n'a pas réagi à temps à l'alarme niveau haut car il gérait simultanément une autre opération. La jauge de niveau affichait une valeur incorrecte.",
+    "immediate_actions": [
+      "Arrêt pompage",
+      "Confinement produit",
+      "Pompage cuvette rétention"
+    ],
+    "root_cause_preliminary": "Défaillance capteur niveau + surcharge opérateur (2 opérations simultanées)",
+    "injuries": 0,
+    "material_damage_eur": 12000,
+    "production_loss_hours": 8,
+    "environmental_impact": "Mineur - produit contenu dans rétention",
+    "status": "Clos - Actions correctives déployées",
+    "corrective_actions": [
+      "Remplacement capteur niveau",
+      "Procédure: 1 opérateur dédié par transfert navire",
+      "Installation alarme niveau très-haut redondante"
+    ],
+    "attachments": ["photo_cuvette.jpg"]
+  },
+  {
+    "incident_id": "INC-2023-0156",
+    "site": "Plateforme Chimie Sud - Atelier H2S",
+    "date": "2023-11-22",
+    "reported_by": "Marc Lefebvre",
+    "department": "Production",
+    "severity": "critical",
+    "category": "Rejet toxique",
+    "title": "Émission H2S lors opération dépotage - Alerte POI",
+    "description": "Pendant le dépotage d'un camion-citerne de soufre liquide, une émission importante de H2S s'est produite suite à la rupture d'un flexible de connexion. Les détecteurs ont relevé des pics à 35 ppm. Le POI a été déclenché, le personnel non essentiel évacué. Odeurs signalées par riverains jusqu'à 1.5km. Aucun blessé grâce au port des ARI par les opérateurs présents.",
+    "immediate_actions": [
+      "Déclenchement POI niveau 1",
+      "Évacuation zone",
+      "Mise en place rideaux d'eau",
+      "Information préfecture"
+    ],
+    "root_cause_preliminary": "Flexible vétuste - dépassement durée de vie préconisée",
+    "injuries": 0,
+    "material_damage_eur": 8000,
+    "production_loss_hours": 24,
+    "environmental_impact": "Émission atmosphérique - dispersion rapide",
+    "regulatory_notification": true,
+    "status": "Clos",
+    "corrective_actions": [
+      "Remplacement tous flexibles >5 ans",
+      "Registre suivi âge flexibles",
+      "Formation recyclage ARI tous opérateurs"
+    ],
+    "lessons_learned": "Le port systématique des ARI en zone dépotage a évité toute exposition. À généraliser sur tous les sites.",
+    "attachments": ["chronologie_POI.pdf", "mesures_H2S.xlsx", "communique_presse.docx"]
+  },
+  {
+    "incident_id": "INC-2024-0051",
+    "site": "Raffinerie Normandie - Échangeur E-401",
+    "date": "2024-02-03",
+    "reported_by": "Philippe Renard",
+    "department": "Procédés",
+    "severity": "high",
+    "category": "Incendie",
+    "title": "Départ de feu échangeur thermique",
+    "description": "Un départ de feu s'est déclaré sur l'échangeur E-401 suite à une fuite au niveau d'une bride. Le produit (naphta) s'est enflammé au contact d'une surface chaude. L'équipe de première intervention a maîtrisé le feu en 12 minutes avec extincteurs et RIA. Dégâts limités à l'isolation thermique de l'échangeur.",
+    "immediate_actions": [
+      "Alerte incendie",
+      "Intervention EPI",
+      "Isolement procédé",
+      "Refroidissement équipements adjacents"
+    ],
+    "root_cause_preliminary": "Fuite bride (joint défaillant) + proximité point chaud",
+    "injuries": 0,
+    "material_damage_eur": 85000,
+    "production_loss_hours": 120,
+    "status": "Investigation en cours",
+    "investigation_team": ["HSE", "Inspection", "Procédés", "Maintenance"],
+    "attachments": ["video_intervention.mp4", "photo_degats_001.jpg", "photo_degats_002.jpg"]
+  },
+  {
+    "incident_id": "INC-2023-0134",
+    "site": "Site Métallurgie Est - Four F-03",
+    "date": "2023-09-15",
+    "reported_by": "Nicolas Weber",
+    "department": "Production Acier",
+    "severity": "critical",
+    "category": "Explosion",
+    "title": "Explosion four à arc - Accumulation gaz",
+    "description": "Une explosion s'est produite dans le four à arc F-03 lors de la phase de préchauffage. L'enquête préliminaire indique une accumulation de monoxyde de carbone due à une purge incomplète avant rallumage. Deux opérateurs ont été blessés par des projections (brûlures superficielles bras et visage). Le four est hors service.",
+    "immediate_actions": [
+      "Évacuation atelier",
+      "Secours aux blessés",
+      "Sécurisation électrique",
+      "Mise en sécurité four"
+    ],
+    "root_cause_preliminary": "Purge incomplète - Procédure non respectée (étape sautée)",
+    "injuries": 2,
+    "injury_details": "2 opérateurs - brûlures 1er et 2ème degré - hospitalisés 48h",
+    "material_damage_eur": 350000,
+    "production_loss_hours": 480,
+    "regulatory_notification": true,
+    "status": "Investigation DREAL en cours",
+    "attachments": ["rapport_preliminaire.pdf", "temoignages.pdf", "schema_four.dwg"]
+  }
+]
