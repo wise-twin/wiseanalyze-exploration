@@ -3,6 +3,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import JavascriptException
 
 import time, os
 import glob
@@ -23,7 +24,7 @@ CTNs = {
     "Z - Catégories forfaitaires" : 11,
 }
 
-def scrape(indexFrom=1, selected_CTN = "D - Services, commerces et industries de l'alimentation", limit = 2, write_html_on_disk=False):
+def scrape(indexFrom=1, selected_CTN = "D - Services, commerces et industries de l'alimentation", limit = 2, write_html_on_disk = False):
     """
     Scrape data from the EPICEA French industrial risks database.
 
@@ -34,7 +35,7 @@ def scrape(indexFrom=1, selected_CTN = "D - Services, commerces et industries de
     and data is parsed using BeautifulSoup.
 
     Args:
-        indexFrom: The starting EPICEA file identifier (dossier number). Used to
+        indexFrom: The starting EPICEA file identifier (numero dossier). Used to
             filter results from a specific range. Defaults to 1.
         selected_CTN: The industrial classification (Convention Collective Nationale - CTN)
             to filter results. Must be a key from the CTNs dictionary.
@@ -125,25 +126,29 @@ def scrape(indexFrom=1, selected_CTN = "D - Services, commerces et industries de
 
     data = []
 
-    try:
-        driver.get('https://epicea.inrs.fr/servlet/public_request')
-        wait_for_page()
+    print(f"Scraping EPICEA from Numéro Dossier : {indexFrom}")
 
-        go_to_recherche_avancee(driver)
-        select_indexFrom_and_CTN(indexFrom, selected_CTN)
-        click_afficher_la_liste(driver)
+    driver.get('https://epicea.inrs.fr/servlet/public_request')
+    wait_for_page()
+
+    go_to_recherche_avancee(driver)
+    select_indexFrom_and_CTN(indexFrom, selected_CTN)
+    click_afficher_la_liste(driver)
+    try :
         click_first_result(driver)
+    except JavascriptException:
+        print(f"Selenium Javascript Exception, probably couldn't find a result to click on with indexFrom {indexFrom}")
+        return []
 
-        for _ in tqdm(range(limit), desc="Scraping EPICEA web pages"):
-            soup = BeautifulSoup(driver.page_source, 'html.parser')
-            parsed_soup = _parse_soup(soup)
-            if write_html_on_disk : dump_html(driver, fileName=parsed_soup["Numéro du dossier"], dirName=selected_CTN)
-            data.append(parsed_soup)
-            click_next_result(driver)
-            time.sleep(.1)
-    finally:
-        driver.quit()
-
+    for _ in tqdm(range(limit), desc="Scraping EPICEA web pages"):
+        soup = BeautifulSoup(driver.page_source, 'html.parser')
+        parsed_soup = _parse_soup(soup)
+        if write_html_on_disk : dump_html(driver, fileName=parsed_soup["Numéro du dossier"], dirName=selected_CTN)
+        data.append(parsed_soup)
+        click_next_result(driver)
+        time.sleep(.1)
+    
+    driver.quit()
     return data
 
 def process_html_directory(directory_path="./epicea_results", extension="*.html"):

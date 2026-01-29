@@ -188,7 +188,5 @@ def execute_raw_sql(conn, query: str, fetch: bool = False):
         cursor.close()
 
 if __name__ == "__main__":
-    conn_string = os.getenv("NEON_CONNECTION_STRING")
-    assert conn_string is not None
-    result = execute_raw_sql(conn_string, "select MAX(source_id) from accidents where source = 'EPICEA'", fetch=True)[0][0]
-    print(result)
+    DB_CONN_STRING = os.getenv("NEON_CONNECTION_STRING")
+    assert DB_CONN_STRING is not None
