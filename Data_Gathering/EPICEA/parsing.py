@@ -5,12 +5,9 @@ from utils.Cached_LLM import Cached_LLM
 
 import os
 import pandas as pd
-from langchain_core.messages import SystemMessage, HumanMessage
-from langchain_openai import ChatOpenAI
 from pydantic import BaseModel
 from pydantic import Field
 from uuid import uuid5, UUID
-from string import Template
 from typing import List
 from tqdm import tqdm
 
@@ -163,9 +160,10 @@ def convert_to_db(df : pd.DataFrame, llm : Cached_LLM, trunc : None | int = None
 
     return db_lines
 
-
-
 if __name__ == "__main__":
+    from prompts import PROMPTS, SYSTEM_MESSAGE
+    from langchain_openai import ChatOpenAI
+    
     OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
     llm = ChatOpenAI(
         model="gpt-5-nano",
@@ -173,19 +171,6 @@ if __name__ == "__main__":
         reasoning_effort="low",
         service_tier="flex"
     )
-
-    PROMPTS = {
-        "title" : {"prompt":Template("J'ai besoin d'un titre qui résume en une petite phrase cette description:\n$context"), "schema": TextSchema},
-        "fatalities" : {"prompt":Template("Combien de morts y a t il dans la description suivante:\n$context\n\n\nNe répond qu'un seul nombre"), "schema": NumberSchema},
-        "injuries" : {"prompt":Template("Combien de blessés y a t il dans la description suivante:\n$context\n\n\nNe répond qu'un seul nombre"), "schema": NumberSchema},
-        "evacuated" : {"prompt":Template("Combien de personnes évacuées y a t il dans la description suivante:\n$context\n\n\nNe répond qu'un seul nombre"), "schema": NumberSchema},
-        "hospitalized" : {"prompt":Template("Combien de personnes hospitalisées y a t il dans la description suivante:\n$context\n\n\nNe répond qu'un seul nombre"), "schema": NumberSchema},
-        "substances" : {"prompt":Template("Quelles substances sont en jeu dans la description suivante:\n$context\n\n\nS'il n'y en a pas répond un JSON vide. Si la quantité n'est pas renseignée, ne met rien"), "schema":SubstancesOutput},
-    }
-
-    SYSTEM_MESSAGE = SystemMessage(content="Tu es un assistant français. Réponds UNIQUEMENT en français avec des réponses courtes et précises. Ne jamais utiliser l'anglais." \
-            "Tu es un expert en extraction de données. Il va t'etre passé du text non structuré, et tu dois le convertir dans la structure donnée. " \
-            "Si un nombre n'est pas mentionné, répond 0")
 
     llm = Cached_LLM(llm, SYSTEM_MESSAGE, PROMPTS)
 

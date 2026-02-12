@@ -118,10 +118,12 @@ class Cached_LLM:
             Extracted field value (str, int, or structured data).
         """
         if field not in self.prompts.keys():
+            print(f"<MISSING> Prompting Cached LLM for MISSING Field : {field}")
             return "<AI> To Prompt"
 
         selectedPrompt = self.prompts[field]["prompt"].substitute(context=context)
         selectedSchema = self.prompts[field]["schema"]
+        print(f"Prompting Cached LLM for Field : {field}")
         response = self.prompt(selectedPrompt, selectedSchema).response
 
         return response

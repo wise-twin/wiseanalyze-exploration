@@ -72,7 +72,7 @@ def scrape(indexFrom=1, selected_CTN = "D - Services, commerces et industries de
         ... )
     """
     chrome_options = Options()
-    # chrome_options.add_argument("--headless")  # Remove for visible browser
+    chrome_options.add_argument("--headless")  # Remove for visible browser
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--disable-dev-shm-usage")
     

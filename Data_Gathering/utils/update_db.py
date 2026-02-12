@@ -1,6 +1,6 @@
 from contextlib import contextmanager
 from typing import Generator, Optional
-import psycopg2, os
+import psycopg2
 from psycopg2.extras import execute_values
 from dotenv import load_dotenv
 load_dotenv()
@@ -188,5 +188,6 @@ def execute_raw_sql(conn, query: str, fetch: bool = False):
         cursor.close()
 
 if __name__ == "__main__":
-    DB_CONN_STRING = os.getenv("NEON_CONNECTION_STRING")
+    from os import getenv
+    DB_CONN_STRING = getenv("NEON_CONNECTION_STRING")
     assert DB_CONN_STRING is not None
