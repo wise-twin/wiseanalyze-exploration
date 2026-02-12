@@ -25,6 +25,7 @@ llm = ChatOpenAI(
     service_tier="flex"
 )
 
+
 def get_last_numero_dossier(conn):
     return execute_raw_sql(conn, "select MAX(source_id) from accidents where source = 'EPICEA'", fetch=True)[0][0]
 
@@ -32,6 +33,8 @@ CTNs_array = list(CTNs.keys())
 with get_db_connection(DB_CONN_STRING, schema="WizeAnalyze") as conn :
     last_dossier = get_last_numero_dossier(conn)
 
+# L'id est incremental commence par 1
+# pour peupler la base de donnees au début on commencera par 1
 last_dossier = 1 # TESTING ONLY
 
 scraping_result_jsons = scrape(indexFrom=last_dossier, selected_CTN=CTNs_array[0])

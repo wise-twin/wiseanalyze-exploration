@@ -14,7 +14,7 @@ load_dotenv()
 DB_CONN_STRING = getenv("NEON_CONNECTION_STRING")
 assert DB_CONN_STRING is not None
 
-result_df = read_csv("./accidents-tous-req10905.csv", encoding="cp1252", sep=";", skiprows=7)
+result_df = read_csv("./Data/Aria.csv", encoding="cp1252", sep=";", skiprows=7)
 
 db_ready_jsons = convert_to_db(result_df, limit=10)
 

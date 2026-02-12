@@ -1,0 +1,4 @@
+rotate les cles
+check context manager
+enlever les fichier todel apres verifications
+enlever les references a osha
