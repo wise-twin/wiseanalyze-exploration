@@ -2,3 +2,8 @@ rotate les cles
 check context manager
 enlever les fichier todel apres verifications
 enlever les references a osha
+
+dans causes envrionnementales on a rien pour EPICEA au niveau des prompts pour recuperer ces donnees car potentiellement non important.
+il y a des ecritures en disques penser aux consequences serverless functions
+selenium faire attention si on peut le faire tourner sur server
+
